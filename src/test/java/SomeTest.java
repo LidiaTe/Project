@@ -48,7 +48,7 @@ public class SomeTest {
     }
 
     @Test
-    public void Test() {
+    public void Test1() {
 
         /*
 
@@ -89,6 +89,13 @@ public class SomeTest {
        // Assertions.assertEquals( expected, actual );
 
         //System.out.println("Карточка: " +actual +"\n");
+
+    }
+
+    @Test
+    public void Test2(){
+        driver.get( "https://otus.ru" );
+        new MainPage( driver ).menuClick( "Программирование" );
 
     }
 
