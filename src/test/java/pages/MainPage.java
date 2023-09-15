@@ -27,8 +27,9 @@ public class MainPage extends BasePage {
         url = "http://otus.ru";
     }
 
-    public CatalogPage menuClick(String el){
-        menu.findElement( new By.ByLinkText(el) ).click();
+    public CatalogPage menuClick(int el){
+        ++el; //локатор "Программирование" child(2)
+        menu.findElement( By.cssSelector(".sc-yfk21i-0:nth-child("+el+")") ).click();
         return new CatalogPage( driver );
     }
 
