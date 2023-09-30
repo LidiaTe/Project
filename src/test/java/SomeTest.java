@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.CalendarPage;
 import pages.CoursePage;
 import pages.MainPage;
 import pages.WebDriverFactory;
@@ -50,7 +49,7 @@ public class SomeTest {
     }
 
     @Test
-    public void Test1() {
+    public void checkCards() {
 
         /*
         Проверка количества курсов в разделе тестирование:
@@ -76,11 +75,11 @@ public class SomeTest {
     }
 
     @Test
-    public void Test2(){
+    public void viewCard(){
         /*
-Просмотр карточки курса:
-1 Пользователь переходит на карточку курса
-*/
+        Просмотр карточки курса:
+        1 Пользователь переходит на карточку курса
+        */
         driver.get( "https://otus.ru" );
       // String s =  new MainPage( driver ).menuClick( 1 ).GetCard().get( 0 ).getCardName();
        String s =  new MainPage( driver ).menuClick( 1 ).GetCard().get( 0 ).click( driver ).getTitle();
@@ -88,7 +87,7 @@ public class SomeTest {
     }
 
     @Test
-    public void Test3(){
+    public void descriptionsCard(){
         /*
         Просмотр карточки курса:
         2 В карточке указана информация о курсе:
@@ -111,7 +110,7 @@ public class SomeTest {
 
 
     @Test
-    public void Test4(){
+    public void CheckDataCard(){
         /*
         Валидация дат предстоящих мероприятий:
         1 Пользователь переходит в раздел События -> Календарь мероприятий
@@ -128,7 +127,7 @@ public class SomeTest {
 
     }
     @Test
-    public void Test5(){
+    public void CheckOpenVebinar(){
         /*
 
         * Просмотр мероприятий по типу:
