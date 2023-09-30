@@ -1,7 +1,9 @@
 package components;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.CoursePage;
 
 import javax.lang.model.element.Element;
 
@@ -16,8 +18,9 @@ public class NewCourseCard  {
         return card.findElement( By.cssSelector( "h6" )).getText();
     }
 
-    public void click() {
+    public CoursePage click(WebDriver driver) {
         card.click();
+        return new CoursePage(driver);
     }
 
     public String getCardDate(){

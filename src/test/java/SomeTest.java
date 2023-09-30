@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.CalendarPage;
+import pages.CoursePage;
 import pages.MainPage;
 import pages.WebDriverFactory;
 import org.apache.log4j.LogManager;
@@ -51,10 +53,10 @@ public class SomeTest {
     public void Test1() {
 
         /*
-Проверка количества курсов в разделе тестирование:
-1 Пользователь переходит в разделе тестирование
-2 На странице отображаются карточки курсов. Количество карточек равно 11
-*/
+        Проверка количества курсов в разделе тестирование:
+        1 Пользователь переходит в разделе тестирование
+        2 На странице отображаются карточки курсов. Количество карточек равно 11
+        */
 
 
         //Открыть https://otus.ru
@@ -78,29 +80,73 @@ public class SomeTest {
         /*
 Просмотр карточки курса:
 1 Пользователь переходит на карточку курса
-2 В карточке указана информация о курсе:
-Название
-Описание
-Длительность обучения
-Формат // Минимально достаточное - проверить одну карточку. В идеале все в разделе тестирования.
 */
         driver.get( "https://otus.ru" );
-       String s =  new MainPage( driver ).menuClick( 1 ).GetCard().get( 0 ).getCardName();
+      // String s =  new MainPage( driver ).menuClick( 1 ).GetCard().get( 0 ).getCardName();
+       String s =  new MainPage( driver ).menuClick( 1 ).GetCard().get( 0 ).click( driver ).getTitle();
        System.out.println("Карточка: " +s +"\n");
     }
 
     @Test
     public void Test3(){
         /*
-Валидация дат предстоящих мероприятий:
-1 Пользователь переходит в раздел События -> Календарь мероприятий
-2 На странице отображаются карточки предстоящих мероприятий.
-3 Даты проведения мероприятий больше или равны текущей дате
-Просмотр мероприятий по типу:
-1 Пользователь переходит в раздел События -> Календарь мероприятий
-2 Пользователь сортирует мероприятия по типу Открытые вебинары
-3 На странице отображаются карточки предстоящих мероприятий. На каждой карточке в типе указанно "Открытые вебинары"
-*/
+        Просмотр карточки курса:
+        2 В карточке указана информация о курсе:
+        Название
+        Описание
+        Длительность обучения
+        Формат // Минимально достаточное - проверить одну карточку. В идеале все в разделе тестирования.
+        */
+        driver.get( "https://otus.ru" );
+
+        CoursePage page = new MainPage( driver ).menuClick( 1 ).GetCard().get( 0 ).click( driver );
+
+
+        System.out.println("Описание: " +page.getDescription() +"\n");
+        System.out.println("Старт курса: " +page.getStartFrom() +"\n");
+        System.out.println("Продолжительность: " +page.getDuration() +"\n");
+    }
+
+
+
+
+    @Test
+    public void Test4(){
+        /*
+        Валидация дат предстоящих мероприятий:
+        1 Пользователь переходит в раздел События -> Календарь мероприятий
+        2 На странице отображаются карточки предстоящих мероприятий.
+        3 Даты проведения мероприятий больше или равны текущей дате
+         */
+
+        driver.get( "https://otus.ru" );
+
+        String actual = new MainPage( driver).CalendarPageClick().getStartFrom();
+
+        System.out.println("Дата: " +actual);
+
+
+    }
+    @Test
+    public void Test5(){
+        /*
+
+        * Просмотр мероприятий по типу:
+        1 Пользователь переходит в раздел События -> Календарь мероприятий
+        2 Пользователь сортирует мероприятия по типу Открытые вебинары
+        3 На странице отображаются карточки предстоящих мероприятий. На каждой карточке в типе указанно "Открытые вебинары"
+        * */
+
+        driver.get( "https://otus.ru" );
+
+        String expected = "Открытый вебинар";
+
+        String actual = new MainPage( driver).CalendarPageClick().getTitle();
+
+        System.out.println("Тип выбинара: " +actual);
+
+        Assertions.assertEquals( expected, actual );
+
     }
 
 
